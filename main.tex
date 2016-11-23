@@ -8,14 +8,37 @@
 			right=1.0in,
 			textheight=9in, 
 			headheight=14pt]{geometry}
+\usepackage{ifxetex}
+
 
 % Packages
 % Locale settings
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern} % font
-\usepackage[danish,english]{babel}
+\ifxetex
+    \usepackage{fontspec}
+    \usepackage{polyglossia}
+    \setdefaultlanguage{english}
+    
+    \setmainfont{texgyrepagella}[
+                 Path=fonts/,
+                 UprightFont=*-regular,
+                 BoldFont=*-bold,
+                 ItalicFont=*-italic,
+                 BoldItalicFont=*-bolditalic]
+                 
+    \setsansfont{LinBiolinum}[
+                 Path=fonts/,
+                 UprightFont=*_R,
+                 BoldFont=*_RB]
+\else
+    \usepackage[utf8]{inputenc}  % Not needed for XeTex
+    \usepackage[T1]{fontenc}
+    \usepackage[danish,english]{babel}
+    \usepackage{lmodern} % font
+\fi
 \usepackage{setspace} % text spacing
+
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
 
 % We want clickable links in the pdf. Hide borders.
 \usepackage[pdfborder={0 0 0}]{hyperref}
